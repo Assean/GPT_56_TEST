@@ -1,0 +1,3 @@
+<?php require_once __DIR__.'/includes/common.php';
+if($_SERVER['REQUEST_METHOD']==='POST'){ $u=$_POST['username']??''; $p=$_POST['password']??''; $st=db()->prepare('SELECT * FROM users WHERE username=?');$st->execute([$u]);$user=$st->fetch(); if($user && password_verify($p,$user['password_hash'])){$_SESSION['uid']=$user['id']; header('Location:index.php'); exit;} $err='帳號或密碼錯誤';}
+?><form class="login-form" method="post"><input class="username-input" name="username"><input class="password-input" type="password" name="password"><button class="login-submit-button" type="submit">登入</button><?php if(!empty($err)) echo '<script>alert("'.$err.'")</script>';?></form>
