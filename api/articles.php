@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/../includes/common.php'; require_login(); $st=db()->prepare('INSERT INTO articles(user_id,title,content) VALUES(?,?,?)');$ok=$st->execute([current_user_id(),$_POST['title']??'',$_POST['content']??'']); json_response($ok,$ok?'created':'fail',['id'=>db()->lastInsertId()]);

@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/../includes/common.php'; require_login(); $action=$_POST['action']??''; if($action==='update_bio'){ $st=db()->prepare('UPDATE users SET bio=? WHERE id=?'); $ok=$st->execute([$_POST['bio']??'',current_user_id()]); json_response($ok,$ok?'ok':'fail'); } json_response(false,'invalid',[],400);

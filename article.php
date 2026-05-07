@@ -1,0 +1,2 @@
+<?php require_once __DIR__.'/includes/common.php'; $id=(int)($_GET['id']??0); $st=db()->prepare('SELECT * FROM articles WHERE id=?');$st->execute([$id]);$a=$st->fetch(); ?>
+<div id="article"><header class="article-header"><h1 class="article-title"><?=htmlspecialchars($a['title']??'')?></h1><time class="article-date"><?=$a['created_at']??''?></time></header><section class="article-body"><?=nl2br(htmlspecialchars($a['content']??''))?></section></div>
